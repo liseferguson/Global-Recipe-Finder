@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 50px;
+  padding-left: 30px;
+  background-color: LightSteelBlue;
+  font-family: 'Sunflower', sans-serif;
+}
+
+.container, .icon-box {
+  display: block;
+  text-align: center;
+}
+
+h1 {
+	text-align: center;
+	font-size: 50px;
+}
+
+button {
+  height: 90px;
+  cursor: ponter;
+}
+
+button:hover {
+	background-color: yellow;
+}

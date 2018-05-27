@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- html below sets content to adjest to different devices' widths accordingly -->
+    <meta name="viewport" content="width=device-width">
+    <!-- Accessability feature -->
+    <meta name="description" content="An app that produces recipes based on randomly generated countries all over the world">
+    <!-- normalization -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+    <title>Global Recipe Generator</title>
+    <!-- link to jquery and other? -->
+    <script
+          src="https://code.jquery.com/jquery-3.2.1.min.js"
+          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+          crossorigin="anonymous"></script>
+    <link href="main.css" rel="stylesheet" type="text/css" />
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Sunflower:300" rel="stylesheet">
+    <title>Recipes from aournd the world!</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav bar"></div>
+      <header class="header" role="banner">
+        <h1 class="App-title">Global Recipe Generator</h1>
+        <p class="description">Click the button to select a random country in the world</p>
+      </header>
+      <button class="recipe-button" role="button">Click Me!</button>
+<!-- button above says "Click me!", then after clicked, says "Try another country" to try again-->
+      <div class="region-container"></div>
+        <div class="region-text">Rondomly selected country goes here!</div>
+<!-- button below will only acivate/appear when first button is pushed and returns a country in the div.
+Then button will specify which country is above in text. IE "For a recipe from Guam, click here!"
+Then, when clicked, will load a recipe right on the page-->
+      <button class="region-button" role="button">Click to get a recipe from...</button>
+<!--new-recipe-button returns a new recipe still from country in region-coontainer div-->
+      <button class="new-recipe-button" role="button">Or, try another recipe</button>
+      <div class="icon-box">
+        <img src="https://i.imgur.com/K8aeQ3B.png" alt="rice icon">
+        <img src="https://i.imgur.com/CkWnTv7.png" alt="sushi icon">
+        <img src="https://i.imgur.com/mvXGvBp.png" alt="croissant icon">
+      </div>
+      <div class="credits">
+        <p class="credit-text">"Food icons by "
+          <a href="https://www.flaticon.com/authors/smashicons" target="_blank">SmashIcons</a>
+          " from"
+          <a href="https://www.flaticon.com/" target="_blank">wwwflaticon.com</a>
+        </p>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
