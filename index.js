@@ -1,5 +1,7 @@
 'use strict';
 
+const YUMMLY_SEARCH_URL = 'https://api.yummly.com/v1';
+
 //function will randomly select one of the cuisines in the array
 function selectRandomCuisine() {
   const cuisines = [
@@ -13,8 +15,11 @@ function selectRandomCuisine() {
   let randomCuisine = cuisines[Math.floor(Math.random() * cuisines.length)];
   return randomCuisine;
 }
-//when clicked, resultCuisine to display in the div, text on button to change to "Try another cuisine"
 
+// let resultCuisine = selectRandomCuisine();
+// console.log(resultCuisine);
+
+//when clicked, resultCuisine to display in the div, text on button to change to "Try another cuisine"
 function setupRecipeButton(){
   console.log('setting up the click handler')
   $('.js-recipe-button').click(function(event){
@@ -30,12 +35,12 @@ function selectRandomRecipe(){
 }
 
 
-/*
-//have to change this for Yummly not Wikipedia
+
+//get data from Yummly API
+
 function getDataFromApi(searchTerm, callback) {
   const settings = {
-      url: "https://en.wikipedia.org/wiki/National_dish#By_country&callback=?",
-      data: queryData,
+      url: "http://api.yummly.com/v1/api/recipes?_app_id=l8dc09775&_app_key=e1e1a4f3182110165850285dd6044a66&requirePictures=true",
       dataType: 'json',
       type: 'GET',
       headers: { 'Api-User-Agent': 'Example/1.0' },
@@ -45,6 +50,7 @@ function getDataFromApi(searchTerm, callback) {
 $.ajax(settings);
 }
 
+/*
 function handleSubmitButton() {
   $('.submit').click(function (event){
 //when user submits zipcode, returns restaurants nearby that serve food from current cuisine in app
@@ -52,4 +58,7 @@ function handleSubmitButton() {
 }
 */
 
-setupRecipeButton()
+$(function(){
+setupRecipeButton();
+getDataFromApi();
+});
