@@ -5,17 +5,25 @@ const = YUMMLY_SEARCH_URL='';
 const = YELP_SEARCG_URL='';
 
 //function will randomly select one of the cuisines in the array
-function selectRandomCuisine(){
+function selectRandomCuisine() {
   const cuisines = [
-  "American", "Italian", "Asian", "Mexican", "Southern & Soul Food", "French", "Southwestern", "Barbecue", "Indian", "Chinese", "Cajun & Creole", "English", "Mediterranean", "Greek", "Spanish", "German", "Thai", "Moroccan", "Irish", "Japanese", "Cuban", "Hawaiin", "Swedish", "Hungarian", "Portugese"];
+    "American", "Italian", "Asian", "Mexican", "Southern & Soul Food",
+    "French", "Southwestern", "Barbecue", "Indian", "Chinese",
+    "Cajun & Creole", "English", "Mediterranean", "Greek", "Spanish",
+    "German", "Thai", "Moroccan", "Irish", "Japanese",
+    "Cuban", "Hawaiin", "Swedish", "Hungarian", "Portugese"
+  ];
+
   let randomCuisine = cuisines[Math.floor(Math.random() * cuisines.length)];
-  console.log(randomCuisine);
-}:
+  return randomCuisine;
 }
-selectRandomCuisine();
+
+let resultCuisine = selectRandomCuisine();
+
 
 function selectRandomRecipe(){
-  //this will use the same method in selectRandomCuisine to select a random recipe from Yummly in the matching category
+  const recipesFromData = [];
+  //this will use the same method in selectRandomCuisine to select a random recipe from Yummly (to be stored in the recipesFromData const) in the matching category
 }
 
 //have to change this for Yummly not Wikipedia
