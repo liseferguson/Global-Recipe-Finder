@@ -13,12 +13,13 @@ function selectRandomCuisine() {
   let randomCuisine = cuisines[Math.floor(Math.random() * cuisines.length)];
   return randomCuisine;
 }
-
 //when clicked, resultCuisine to display in the div, text on button to change to "Try another cuisine"
+
 function setupRecipeButton(){
   console.log('setting up the click handler')
   $('.js-recipe-button').click(function(event){
     $('.cuisine-text').html(`<div>${selectRandomCuisine()}</div>`)
+    $('.js-recipe-button').text("Try another cuisine!");
   });
 }
 
