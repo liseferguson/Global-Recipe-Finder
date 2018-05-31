@@ -1,9 +1,5 @@
 'use strict';
 
-const = YUMMLY_SEARCH_URL='';
-
-const = YELP_SEARCG_URL='';
-
 //function will randomly select one of the cuisines in the array
 function selectRandomCuisine() {
   const cuisines = [
@@ -18,7 +14,13 @@ function selectRandomCuisine() {
   return randomCuisine;
 }
 
-let resultCuisine = selectRandomCuisine();
+//when clicked, resultCuisine to display in the div, text on button to change to "Try another cuisine"
+function setupRecipeButton(){
+  console.log('setting up the click handler')
+  $('.js-recipe-button').click(function(event){
+    $('.cuisine-text').html(`<div>${selectRandomCuisine()}</div>`)
+  });
+}
 
 
 function selectRandomRecipe(){
@@ -26,6 +28,8 @@ function selectRandomRecipe(){
   //this will use the same method in selectRandomCuisine to select a random recipe from Yummly (to be stored in the recipesFromData const) in the matching category
 }
 
+
+/*
 //have to change this for Yummly not Wikipedia
 function getDataFromApi(searchTerm, callback) {
   const settings = {
@@ -36,15 +40,8 @@ function getDataFromApi(searchTerm, callback) {
       headers: { 'Api-User-Agent': 'Example/1.0' },
       success: function (data) {
        console.log(data);
-    };
+    }
 $.ajax(settings);
-}
-
-function handleRecipeButton(){
-  $('.js-recipe-button').click(function(event){
-
-//when user clicks button, cuisine appears along with recipe (and hopefully photo). Text on button changes to "Try another cuisine" and will start the process all over
-  });
 }
 
 function handleSubmitButton() {
@@ -52,3 +49,6 @@ function handleSubmitButton() {
 //when user submits zipcode, returns restaurants nearby that serve food from current cuisine in app
   });
 }
+*/
+
+setupRecipeButton()
