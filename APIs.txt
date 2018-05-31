@@ -1,0 +1,11 @@
+Wikipedia's API endpoint:
+Wiki key: none
+Wiki documentation:  https://www.mediawiki.org/wiki/API:Main_page
+
+Yummly's API:
+Yummly's key:
+Documentation: https://developer.yummly.com/
+
+Yelp Client ID: OYtvlDiWP6n-bJVkGLztRA
+Yelp key: CEqiBVe5Az72K7RTfTf--3WweZImPzJAirFtcO0LDP4OnctKFq5B9Tu32kRPFoUbTw3Dd0iYywnb0bhwuYbggg0xzIloJ6mbOy7_LVRtJajIv8mmGdf30fHz3FEPW3Yx
+Documentation: https://www.yelp.com/developers/documentation/v3
