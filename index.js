@@ -1,5 +1,7 @@
 'use strict';
 
+let currentCuisine = '';
+
 const YUMMLY_SEARCH_URL = 'https://api.yummly.com/v1';
 
 //function will randomly select one of the cuisines in the array
@@ -13,8 +15,12 @@ function selectRandomCuisine() {
   ];
 
   let randomCuisine = cuisines[Math.floor(Math.random() * cuisines.length)];
+  currentCuisine = randomCuisine;
   return randomCuisine;
+
 }
+
+
 
 // let resultCuisine = selectRandomCuisine();
 // console.log(resultCuisine);
@@ -40,7 +46,7 @@ function selectRandomRecipe(){
 
 function getDataFromApi(searchTerm, callback) {
   const settings = {
-      url: "http://api.yummly.com/v1/api/recipes?_app_id=l8dc09775&_app_key=e1e1a4f3182110165850285dd6044a66&requirePictures=true",
+      url: `http://api.yummly.com/v1/api/recipes?_app_id=8dc09775&_app_key=e1e1a4f3182110165850285dd6044a66&requirePictures=true&q=${currentCuisine}`,
       dataType: 'json',
       type: 'GET',
       headers: { 'Api-User-Agent': 'Example/1.0' },
