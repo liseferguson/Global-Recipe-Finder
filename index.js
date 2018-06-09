@@ -4,67 +4,74 @@ let currentCuisine = '';
 
 const YUMMLY_SEARCH_URL = 'https://api.yummly.com/v1';
 
-//function will randomly select one of the cuisines in the array
+//function will randomly select one of the cuisines in the array. These cuisines are all the "supported cuisines" for the allowedCuisine parameter
 function selectRandomCuisine() {
   const cuisines = [
-    "American", "Italian", "Asian", "Mexican", "Southern & Soul Food",
-    "French", "Southwestern", "Barbecue", "Indian", "Chinese",
-    "Cajun & Creole", "English", "Mediterranean", "Greek", "Spanish",
-    "German", "Thai", "Moroccan", "Irish", "Japanese",
-    "Cuban", "Hawaiin", "Swedish", "Hungarian", "Portugese"
+    "american", "italian", "asian", "mexican", "southern & soul food",
+    "french", "southwestern", "barbecue", "indian", "chinese",
+    "cajun & creole", "english", "mediterranean", "greek", "spanish",
+    "german", "thai", "moroccan", "irish", "japanese",
+    "cuban", "hawaiin", "swedish", "hungarian", "portugese"
   ];
-
   let randomCuisine = cuisines[Math.floor(Math.random() * cuisines.length)];
   currentCuisine = randomCuisine;
   return randomCuisine;
 
 }
 
-
-
-// let resultCuisine = selectRandomCuisine();
-// console.log(resultCuisine);
-
 //when clicked, resultCuisine to display in the div, text on button to change to "Try another cuisine"
 function setupRecipeButton(){
   console.log('setting up the click handler')
   $('.js-recipe-button').click(function(event){
-    $('.cuisine-text').html(`<div>${selectRandomCuisine()}</div>`)
+    selectRandomCuisine()
+    $('.cuisine-text').html(`<div>${currentCuisine}</div>`)
     $('.js-recipe-button').text("Try another cuisine!");
   });
 }
 
-
-function selectRandomRecipe(){
-  const recipesFromData = [];
-  //this will use the same method in selectRandomCuisine to select a random recipe from Yummly (to be stored in the recipesFromData const) in the matching category
-}
-
-
-
-//get data from Yummly API
-
-function getDataFromApi(searchTerm, callback) {
-  const settings = {
-      url: `http://api.yummly.com/v1/api/recipes?_app_id=8dc09775&_app_key=e1e1a4f3182110165850285dd6044a66&requirePictures=true&q=${currentCuisine}`,
+//retrieves data from API, including pics and matching the current randomly selected cuisine
+function getDataFromYummlyApi(searchTerm, callback) {
+  console.log("setting up the button to get data");
+  $('.js-recipe-button').click(function(event){
+  const yumSettings = {
+      url: `https://api.yummly.com/v1/api/recipes?_app_id=8dc09775&_app_key=e1e1a4f3182110165850285dd6044a66&requirePictures=true&allowedCuisine[]=cuisine^cuisine-${currentCuisine}`,
       dataType: 'json',
       type: 'GET',
-      headers: { 'Api-User-Agent': 'Example/1.0' },
-      success: function (data) {
-       console.log(data);
-    }
-$.ajax(settings);
+      headers: {},
+      success: function (yumData) {
+       console.log(yumData);
+      },
+      error: function(error){
+        console.log('oh god oh god oh god oh god');
+        console.log(error);
+      }
+  };
+  console.log('now I have sent the request')
+  $.ajax(yumSettings);
+//  $('.restaurant-form').css('display', 'block');
+})
 }
 
-/*
-function handleSubmitButton() {
-  $('.submit').click(function (event){
-//when user submits zipcode, returns restaurants nearby that serve food from current cuisine in app
-  });
+// renders 1 recipe and photo to the browser. imageUrlsBySize is the name of the photos
+function renderResults(matches){
+  return `
+  <div class = "renderedRecipe">
+    <h2>${matches.recipeName}</h2>
+    <img src="https://api.yummly.com/v1/api/recipes?_app_id=8dc09775&_app_key=e1e1a4f3182110165850285dd6044a66&requirePictures=true&allowedCuisine[]=cuisine^cuisine-${currentCuisine}${matches.smallImageUrls}" role= "image" alt= "Recipe photo">
+    <h3>${matches.ingredients}</h3>
+  </div>
+    `
 }
-*/
+
+//this function makes recipe and photo appear on page in <div class="js-current-recipe">
+function displayYummlySearchData(yumData) {
+  const results = yumData.matches.map((matches, recipeName) => renderResults(recipeName));
+  $('.js-current-recipe').html(results);
+}
 
 $(function(){
 setupRecipeButton();
-getDataFromApi();
+getDataFromYummlyApi();
+renderResults();
+displayYummlySearchData();
 });
