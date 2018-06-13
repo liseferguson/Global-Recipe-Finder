@@ -13,7 +13,7 @@ function selectRandomCuisine() {
     "french", "southwestern", "barbecue", "indian", "chinese",
     "cajun & creole", "english", "mediterranean", "greek", "spanish",
     "german", "thai", "moroccan", "irish", "japanese",
-    "cuban", "hawaiin", "swedish", "hungarian", "portugese"
+    "cuban", "hawaiian", "swedish", "hungarian", "portugese"
   ];
   let randomCuisine = cuisines[Math.floor(Math.random() * cuisines.length)];
   currentCuisine = randomCuisine;
@@ -75,7 +75,7 @@ function getDataFromFourSquareApi() {
     data: {
     client_id: 'CTZMWEX0B0B0G4CORJDSKDOC2N2K0HNFLWC1AXMUQ4CBJZ2S',
     client_secret: 'RDP3OYDZ0TPNATBZY2XA3TUHV3LZFX23OQ4PI3LEHLVQ5E1J',
-    ll: '45.5481005, -122.5849967',
+    ll: userLocation,
     query: currentCuisine,
     v: '20180323',
     limit: 1
@@ -93,7 +93,7 @@ function getDataFromFourSquareApi() {
   };
   //console.log('now I have sent the request')
   $.ajax(fourSquareSettings);
-//  $('.restaurant-form').css('display', 'block');
+$('.restaurant-form').css('display', 'block');
 
 }
 
@@ -103,7 +103,7 @@ function renderResults(matches){
 }
 
 function renderSingleRecipe(recipe) {
-  console.log(recipe.smallImageUrls[0]);
+  //console.log(recipe.smallImageUrls[0]);
   return (`
   <div class = "renderedRecipe">
     <h2>${recipe.recipeName}</h2>
@@ -113,7 +113,22 @@ function renderSingleRecipe(recipe) {
 
 }
 
+function renderVenueResults(results){
+  let bigString = renderSingleVenue(results[Math.floor(Math.random() * matches.length)]);
+  $(".js-current-venue").html(bigString);
+}
+
+function renderSingleVenue(venue) {
+  console.log(totalResults)
+  return (`
+  <div class = "renderedVenue">
+    <h2>${venue.name}</h2>
+    <h3>${venue.location.address}</h2>
+    <a href="" target="new">Click here to visit restaurant site</a>`)
+}
+
 $(function(){
+getLocation();
 setupRecipeButton();
 getDataFromYummlyApi();
 //displayYummlySearchData();
