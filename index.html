@@ -8,7 +8,7 @@
     <meta name="description" content="An app that provides recipes based on randomly generated cuisines from all over the world">
     <!-- normalization -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
-    <title>Global Recipe Generator</title>
+    <title>Global Recipe Finder</title>
     <!-- link to jquery and other? -->
     <script
           src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -22,8 +22,8 @@
   <body>
     <div class="container">
       <header class="header" role="banner">
-        <h1 class="App-title">Global Recipe Generator</h1>
-        <p class="description">Click the button to select a random cuisine and recipe</p>
+        <h1 class="App-title">Global Recipe Finder</h1>
+        <p class="description">Click the button to select a random cuisine and find a recipe</p>
       </header>
       <button class="js-recipe-button" role="button">Click Me!</button>
 <!-- button above says "Click me!", then after clicked, says "Try another cuisine" to try again-->
@@ -31,18 +31,15 @@
         <div class="cuisine-text"></div>
       </div>
       <div class="recipe-container">
-        <div class="js-current-recipe">
+        <div class="recipe-text"></div>
       </div>
       <div class="restaurant-form">
-      <h2>Or, go to a local restaurant that will make it for you.</h2>
-          <form action="#" class="js-search-form">
-            <label for="query"></label>
-            <input type="text" class="js-query" placeholder="Enter your zipcode" required>
-            <button type="submit" role="button">Search</button>
+      <h2>Or, go to a local restaurant that will make somehting like it for you.</h2>
+          <form action="#" class="userZipcode">
+            <label for="zip-input"></label>
+            <input type="text" class="zip-input" pattern="[0-9]{5}" placeholder="Enter 5-digit zipcode" required>
+            <button type="submit" role="button">Go!</button>
           </form>
-          <h2>Results</h2>
-          <div class="js-current-venue">
-          </div>
      </div>
     <footer role="contentinfo">
       <div class="icon-box">
@@ -51,7 +48,11 @@
         <img src="https://i.imgur.com/mvXGvBp.png" alt="croissant icon">
       </div>
       <div class="credits">
-        <p class="credit-text">Food icons by
+        <p class="credit-sites">Powered by
+          <a href="https://www.yummly.com" target="_blank">Yummly</a>
+          and <a href="https:/.www.yelp.com" target="_blank">Yelp</a>
+        </p>
+        <p class="credit-icons">Food icons by
           <a href="https://www.flaticon.com/authors/smashicons" target="_blank">SmashIcons</a>
            from
           <a href="https://www.flaticon.com/" target="_blank">wwwflaticon.com</a>

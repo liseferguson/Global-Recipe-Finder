@@ -1,4 +1,4 @@
-* {* {
+* {
   box-sizing: border-box;
 }
 
@@ -34,6 +34,17 @@ button {
 
 button:hover {
 	background-color: yellow;
+}
+
+.cuisine-text {
+  color:aquamarine;
+  font-size: 50px;
+}
+
+.recipeImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .restaurant-form {
