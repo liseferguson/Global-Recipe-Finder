@@ -31,8 +31,15 @@ function setupRecipeButton(){
 function getDataFromYummlyApi() {
   console.log("setting up the button to get data");
   $('.js-recipe-button').click(function(event){
+    let data = {
+      _app_id: '8dc09775',
+      _app_key: 'e1e1a4f3182110165850285dd6044a66',
+      requirePictures: true,
+      'allowedCuisine[]': `cuisine^cuisine-${currentCuisine}`
+    };
   const yumSettings = {
-      url: `https://api.yummly.com/v1/api/recipes?_app_id=8dc09775&_app_key=e1e1a4f3182110165850285dd6044a66&requirePictures=true&allowedCuisine[]=cuisine^cuisine-${currentCuisine}`,
+      url: `https://api.yummly.com/v1/api/recipes`,
+      data: data,
       dataType: 'json',
       type: 'GET',
       headers: {},
