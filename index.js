@@ -2,7 +2,7 @@
 
 let currentCuisine = '';
 
-//function will randomly select one of the cuisines in the array. These cuisines are all the "supported cuisines" for the allowedCuisine parameter
+//function will randomly select one of the cuisines in the array. These cuisines are all the "supported cuisines" for the allowedCuisine parameter in Yummly.
 function selectRandomCuisine() {
   const cuisines = [
     "american", "italian", "asian", "mexican", "southern",
@@ -19,7 +19,6 @@ function selectRandomCuisine() {
 
 //when clicked, resultCuisine to display in the div, text on button to change to "Try another cuisine"
 function setupRecipeButton(){
-  console.log('setting up the click handler')
   $('.js-recipe-button').click(function(event){
     selectRandomCuisine()
     $('.cuisine-text').html(`<div>${currentCuisine}!</div>`)
@@ -27,9 +26,8 @@ function setupRecipeButton(){
   });
 }
 
-//retrieves data from API, including pics and matching the current randomly selected cuisine
+//retrieves data from API, including pictures and matching the current randomly selected cuisine. Also displays previously hidden form for user to search for restaurants.
 function getDataFromYummlyApi() {
-  console.log("setting up the button to get data");
   $('.js-recipe-button').click(function(event){
     let data = {
       _app_id: '8dc09775',
@@ -45,33 +43,33 @@ function getDataFromYummlyApi() {
       headers: {},
       success: function (yumData) {
         renderResults(yumData.matches);
-       console.log(yumData.matches[0]);
       },
       error: function(error){
-        console.log('oh god oh god oh god oh god');
         console.log(error);
       }
   };
-  //console.log('now I have sent the request')
   $.ajax(yumSettings);
 $('.restaurant-form').css('display', 'block');
 })
 }
 
+//Randomly selects one of the matched recipes, turns recipes from API data matching cuisine type into a string
 function renderResults(matches){
   let bigString = renderSingleRecipe(matches[Math.floor(Math.random() * matches.length)]);
   $(".recipe-text").html(bigString);
 }
 
+//Displays one random recipe from renderResults and it's photo in the browser along with link to recipe page
 function renderSingleRecipe(recipe) {
   return (`
   <div class = "renderedRecipe">
     <h2>${recipe.recipeName}</h2>
-    <img src="${recipe.smallImageUrls[0]}" class= "recipeImage" role= "image" alt= "Recipe photo">
-    <a href="https://www.yummly.com/recipe/${recipe.id}" target="new">Click here for recipe</a>
+    <img src="${recipe.smallImageUrls[0]}" class= "recipeImage" role= "img" alt= "Recipe photo"</a>
+    <a href="https://www.yummly.com/recipe/${recipe.id}" target="new" role="link">Click here for recipe</a>
   </div>`)
 }
 
+//listener event- when user submits their zipcode, opens up another window in browser to Yelp searches for restaurants serving that cuisine type in their area
 $('.userZipcode').submit((event) =>{
   event.preventDefault()
   let targetzip = $('.zip-input').val()
