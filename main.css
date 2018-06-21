@@ -8,11 +8,9 @@ body {
   background-color: black;
   color: whitesmoke;
   font-family: 'Sunflower', sans-serif;
-}
-
-.container {
   display: block;
   text-align: center;
+
 }
 
 h1 {
@@ -45,6 +43,7 @@ button:hover {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  height: 120px;
 }
 
 .restaurant-form {
@@ -52,6 +51,10 @@ button:hover {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+
+.credits {
+  color: yellow;
 }
 
 footer {
