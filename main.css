@@ -8,11 +8,9 @@ body {
   background-color: black;
   color: whitesmoke;
   font-family: 'Sunflower', sans-serif;
-}
-
-.container, .icon-box {
   display: block;
   text-align: center;
+
 }
 
 h1 {
@@ -26,22 +24,41 @@ p {
 
 button {
   height: 50px;
-  cursor: ponter;
+  cursor: pointer;
   margin-top: 30px;
   margin-bottom: 30px;
+  border-radius: 10px;
 }
 
 button:hover {
 	background-color: yellow;
 }
 
-.icon-box {
-  margin-top: 30px;
-  margin-bottom: 30px;
+.cuisine-text {
+  color:aquamarine;
+  font-size: 50px;
+}
+
+.recipeImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 120px;
+}
+
+.restaurant-form {
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.credits {
+  color: yellow;
 }
 
 footer {
-  position: absolute;
+  position: relative;
   right: 0;
   bottom: 0;
   left: 0;
