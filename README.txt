@@ -1,1 +1,0 @@
-Global Recipe Finder is a web app that, with the push of a button, returns a randomly generated cuisine from around the world, along with a random recipe of that cuisine. If the user decides they don't feel like cooking after all, they can enter their zip code and find a local restaurant that serves that cuisine.
