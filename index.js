@@ -1,55 +1,88 @@
 'use strict';
 
-//function will randomly select one of the cuisines in the array
+let currentCuisine = '';
+
+//function will randomly select one of the cuisines in the array. These cuisines are all the "supported cuisines" for the allowedCuisine parameter in Yummly.
 function selectRandomCuisine() {
   const cuisines = [
-    "American", "Italian", "Asian", "Mexican", "Southern & Soul Food",
-    "French", "Southwestern", "Barbecue", "Indian", "Chinese",
-    "Cajun & Creole", "English", "Mediterranean", "Greek", "Spanish",
-    "German", "Thai", "Moroccan", "Irish", "Japanese",
-    "Cuban", "Hawaiin", "Swedish", "Hungarian", "Portugese"
+    "american", "italian", "asian", "mexican", "southern",
+    "french", "southwestern", "barbecue", "indian", "chinese",
+    "cajun", "english", "mediterranean", "greek", "spanish",
+    "german", "thai", "moroccan", "irish", "japanese",
+    "cuban", "hawaiian", "swedish", "hungarian", "portugese"
   ];
-
   let randomCuisine = cuisines[Math.floor(Math.random() * cuisines.length)];
+  currentCuisine = randomCuisine;
   return randomCuisine;
 }
-//when clicked, resultCuisine to display in the div, text on button to change to "Try another cuisine"
 
+//when clicked, resultCuisine to display in the div, text on button to change to "Try another cuisine"
 function setupRecipeButton(){
-  console.log('setting up the click handler')
+
   $('.js-recipe-button').click(function(event){
-    $('.cuisine-text').html(`<div>${selectRandomCuisine()}</div>`)
+    selectRandomCuisine();
+    let cuisineDisplay = currentCuisine[0].toUpperCase()
+    + currentCuisine.substring(1);
+    $('.cuisine-text').html(`<div>${cuisineDisplay}!</div>`)
     $('.js-recipe-button').text("Try another cuisine!");
   });
 }
 
-
-function selectRandomRecipe(){
-  const recipesFromData = [];
-  //this will use the same method in selectRandomCuisine to select a random recipe from Yummly (to be stored in the recipesFromData const) in the matching category
-}
-
-
-/*
-//have to change this for Yummly not Wikipedia
-function getDataFromApi(searchTerm, callback) {
-  const settings = {
-      url: "https://en.wikipedia.org/wiki/National_dish#By_country&callback=?",
-      data: queryData,
+//retrieves data from API, including pictures and matching the current randomly selected cuisine. Also displays previously hidden form for user to search for restaurants.
+function getDataFromYummlyApi() {
+  $('.js-recipe-button').click(function(event){
+    let data = {
+      _app_id: '8dc09775',
+      _app_key: 'e1e1a4f3182110165850285dd6044a66',
+      requirePictures: true,
+      'allowedCuisine[]': `cuisine^cuisine-${currentCuisine}`
+    };
+  const yumSettings = {
+      url: `https://api.yummly.com/v1/api/recipes`,
+      data: data,
       dataType: 'json',
       type: 'GET',
-      headers: { 'Api-User-Agent': 'Example/1.0' },
-      success: function (data) {
-       console.log(data);
-    }
-$.ajax(settings);
+      headers: {},
+      success: function (yumData) {
+        renderResults(yumData.matches);
+      },
+      error: function(error){
+        console.log(error);
+      }
+  };
+  $.ajax(yumSettings);
+$('.restaurant-form').css('display', 'block');
+})
 }
 
-function handleSubmitButton() {
-  $('.submit').click(function (event){
-//when user submits zipcode, returns restaurants nearby that serve food from current cuisine in app
-  });
+//Randomly selects one of the matched recipes, turns recipes from API data matching cuisine type into a string
+function renderResults(matches){
+  let bigString = renderSingleRecipe(matches[Math.floor(Math.random() * matches.length)]);
+  $(".recipe-text").html(bigString);
 }
-*/
 
-setupRecipeButton()
+//Displays one random recipe from renderResults and it's photo in the browser along with link to recipe page
+function renderSingleRecipe(recipe) {
+  var imageUrl = recipe.imageUrlsBySize[90];
+  imageUrl = imageUrl.replace("=s90", "=s500");
+
+  return (`
+  <div class = "renderedRecipe">
+    <h2>${recipe.recipeName}</h2>
+    <img src="${imageUrl}" class= "recipeImage" role= "img" alt= "Recipe photo"</a>
+    <a href="https://www.yummly.com/recipe/${recipe.id}" target="new" role="link" class = "recipe-link">Click here for recipe</a>
+  </div>`)
+}
+
+//listener event- when user submits their zipcode, opens up another window in browser to Yelp searches for restaurants serving that cuisine type in their area
+$('.userZipcode').submit((event) =>{
+  event.preventDefault()
+  let targetzip = $('.zip-input').val()
+  let targetURL = `https://www.yelp.com/search?find_desc=${currentCuisine}&find_loc=${targetzip}`
+  window.open(targetURL, '_blank');
+})
+
+$(function(){ 
+setupRecipeButton();
+getDataFromYummlyApi();
+});

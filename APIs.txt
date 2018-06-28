@@ -13,3 +13,12 @@ Yelp
 Client ID: OYtvlDiWP6n-bJVkGLztRA
 key: CEqiBVe5Az72K7RTfTf--3WweZImPzJAirFtcO0LDP4OnctKFq5B9Tu32kRPFoUbTw3Dd0iYywnb0bhwuYbggg0xzIloJ6mbOy7_LVRtJajIv8mmGdf30fHz3FEPW3Yx
 Documentation: https://www.yelp.com/developers/documentation/v3
+
+FourSquare
+Client ID:
+CTZMWEX0B0B0G4CORJDSKDOC2N2K0HNFLWC1AXMUQ4CBJZ2S
+Client Secret:
+RDP3OYDZ0TPNATBZY2XA3TUHV3LZFX23OQ4PI3LEHLVQ5E1J
+
+Zomato
+key: 1ba4ac5ba08e6cc0512406989c0d04bd
