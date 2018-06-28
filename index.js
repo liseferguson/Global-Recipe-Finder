@@ -14,8 +14,9 @@ function selectRandomCuisine() {
   let randomCuisine = cuisines[Math.floor(Math.random() * cuisines.length)];
   currentCuisine = randomCuisine;
   return randomCuisine;
-
 }
+
+//let cuisineDisplay = currentCuisine[0].toUpperCase()+currentCuisine.substring(1);
 
 //when clicked, resultCuisine to display in the div, text on button to change to "Try another cuisine"
 function setupRecipeButton(){
@@ -61,11 +62,14 @@ function renderResults(matches){
 
 //Displays one random recipe from renderResults and it's photo in the browser along with link to recipe page
 function renderSingleRecipe(recipe) {
+  var imageUrl = recipe.imageUrlsBySize[90];
+  imageUrl = imageUrl.replace("=s90", "=s500");
+
   return (`
   <div class = "renderedRecipe">
     <h2>${recipe.recipeName}</h2>
-    <img src="${recipe.smallImageUrls[0]}" class= "recipeImage" role= "img" alt= "Recipe photo"</a>
-    <a href="https://www.yummly.com/recipe/${recipe.id}" target="new" role="link">Click here for recipe</a>
+    <img src="${imageUrl}" class= "recipeImage" role= "img" alt= "Recipe photo"</a>
+    <a href="https://www.yummly.com/recipe/${recipe.id}" target="new" role="link" class = "recipe-link">Click here for recipe</a>
   </div>`)
 }
 
@@ -80,5 +84,4 @@ $('.userZipcode').submit((event) =>{
 $(function(){
 setupRecipeButton();
 getDataFromYummlyApi();
-//displayYummlySearchData();
 });
