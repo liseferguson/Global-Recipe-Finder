@@ -4,7 +4,7 @@ Global Recipe Roulette is a web app that, with the push of a button, returns a r
 
 See it live:
 
-Screenshots:
+https://liseferguson.github.io/Global-Recipe-Roulette/
 
 Technology used:
 
