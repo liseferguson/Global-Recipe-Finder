@@ -1,0 +1,42 @@
+Flex API Hack Review Checklist
+User flow
+
+5
+
+Is this project ready for official scoring?
+
+yes
+
+Content
+
+4
+
+Design
+
+4
+
+JS architecture
+
+5
+
+API integration
+
+5
+
+Accessibility
+
+3
+
+Is this project eligible for approval?
+
+yes
+
+Your feedback
+
+Lise, Way to work hard on this project. The project has an interesting twist on an often seen student project concept, that's good. The functionality works fine, and I found some interesting recipes from using the app. The app overall is engaging. I'm approving the project with a few comments moving forward:
+
+I would make the footer credit info smaller as it's not critical to the UX.
+
+The design is basic and suits the app, but I would think about creating a unique logo for the project to give it a little more original visual feeling to a hiring manager or user.
+
+The app is responding well to different screen sizes and mobile/tablet devices from my testing. Excellent work creating a modern, clean codebase that is well commented out. This is going to make a portfolio piece and will be even stronger with the above comments implemented. Keep up the hard work. Best, Morgan Nixon Lead Capstone Grader

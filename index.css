@@ -72,6 +72,14 @@ button:hover {
   color: white;
 }
 
+.credits a:hover {
+  color: aquamarine;
+}
+
+a.recipe-link:hover {
+  color: aquamarine;
+}
+
 footer {
   position: relative;
   right: 0;
